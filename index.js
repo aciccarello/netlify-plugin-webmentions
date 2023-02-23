@@ -1,4 +1,4 @@
-const Webmention = require("@remy/webmention");
+const Webmention = require("@aciccarello/webmention");
 const {
   CONTEXT,
   URL,
