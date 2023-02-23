@@ -34,6 +34,23 @@ module.exports = {
 
         wm.on("error", (e) => reject(e));
 
+        wm.on("endpoints", (res) => {
+          if (res.length === 0) {
+            if (wm.mentions.length) {
+              console.log(
+                `No webmention endpoints found on ${wm.mentions.length} entries`
+              );
+            } else {
+              console.log("No webmention endpoints found");
+            }
+          } else {
+            res.forEach(({ source, target }) => {
+              console.log(`Found link to ${target} on ${source} page`);
+            });
+          }
+          console.log("");
+        });
+
         wm.on("sent", (res) => {
           console.log(
             `Sent ${res.source} to ${res.endpoint.url} (${res.endpoint.type})`
